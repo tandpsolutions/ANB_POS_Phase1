@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "769158322064",
+    "firebase_url": "https://anb-v1.firebaseio.com",
+    "project_id": "anb-v1",
+    "storage_bucket": "anb-v1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769158322064:android:8c0e3843130d2835",
+        "android_client_info": {
+          "package_name": "com.anb.pos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769158322064-svo5o2ofgr28aoapaio0bf7ptfpuemij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHEQtWd9C7opTx9fcww1N38EQ45mGDCeA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

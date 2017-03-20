@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/_16sdp"
     android:paddingRight="@dimen/_16sdp"
     android:paddingTop="@dimen/_16sdp"
-    tools:context="com.anb.pos.LoginActivity">
+    tools:context="com.anb.pos.login.LoginActivity">
 
     <ScrollView
         android:id="@+id/login_form"
@@ -52,6 +52,12 @@
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp" />
 
             <TextView
                 android:id="@+id/email_sign_in_button"

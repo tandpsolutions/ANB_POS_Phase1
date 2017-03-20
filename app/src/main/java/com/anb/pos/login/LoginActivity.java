@@ -1,12 +1,7 @@
-package com.anb.pos;
+package com.anb.pos.login;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,14 +9,16 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.anb.pos.R;
+import com.anb.pos.login.presenter.LoginPresenterImpl;
+import com.anb.pos.login.view.ILoginView;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements ILoginView {
 
+    private LoginPresenterImpl loginPresenter;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -38,12 +35,15 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
 
+        loginPresenter = new LoginPresenterImpl(this);
+
         mPasswordView = (EditText) findViewById(R.id.password);
         final TextView mEmailSignInButton = (TextView) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+//                attemptLogin();
+                loginPresenter.login(mEmailView.getText().toString(), mPasswordView.getText().toString(), 1);
             }
         });
 
@@ -94,6 +94,26 @@ public class LoginActivity extends AppCompatActivity {
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void dismissLoading() {
+
+    }
+
+    @Override
+    public void showError(int response_code) {
+
+    }
+
+    @Override
+    public void success() {
+
     }
 
 

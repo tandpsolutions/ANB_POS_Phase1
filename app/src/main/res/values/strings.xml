@@ -4,6 +4,10 @@
 
     <string name="something_went_wrong">Something went wrong.\nPlease try after sometime.</string>
 
+
+    <!--Font String  -->
+    <string name="font_roboto_regular">font/roboto_regular.ttf</string>
+
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>

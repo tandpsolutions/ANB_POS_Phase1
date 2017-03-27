@@ -7,9 +7,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.anb.pos.R;
+import com.anb.pos.branch.BranchAdapter;
+import com.anb.pos.branch.BranchManager;
 import com.anb.pos.login.presenter.LoginPresenterImpl;
 import com.anb.pos.login.view.ILoginView;
 
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     // UI references.
     private EditText mEmailView;
     private EditText mPasswordView;
+    private Spinner mBranchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
+        mBranchView = (Spinner) findViewById(R.id.branch);
 
         loginPresenter = new LoginPresenterImpl(this);
 
@@ -46,6 +52,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 loginPresenter.login(mEmailView.getText().toString(), mPasswordView.getText().toString(), 1);
             }
         });
+
+        final SpinnerAdapter spinnerAdapter = new BranchAdapter(this, R.layout.row_spinner_text, BranchManager.getInstance().getBranches());
+        mBranchView.setAdapter(spinnerAdapter);
 
     }
 

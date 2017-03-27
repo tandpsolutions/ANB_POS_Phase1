@@ -22,4 +22,14 @@
     <string name="error_invalid_branch">Invalid Branch</string>
     <string name="error_username_password_invalid">Username or password invalid.\nPlease try again.</string>
 
+    <!-- home activity -->
+    <string name="title_activity_home">Home</string>
+
+    <!-- drawer strings-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_menu_inventory">Inventory</string>
+    <string name="nav_menu_in_transit">In Transit Report</string>
+
+
 </resources>

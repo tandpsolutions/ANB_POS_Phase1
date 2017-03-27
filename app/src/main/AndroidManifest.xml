@@ -30,6 +30,11 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="d3d5cab3895822107d32e18428bbbdb4d58e9647" />
+
+        <activity
+            android:name=".home.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

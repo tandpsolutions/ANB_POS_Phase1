@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="@string/nav_menu_inventory">
+        <menu>
+            <item
+                android:id="@+id/nav_in_transit"
+                android:title="@string/nav_menu_in_transit" />
+
+        </menu>
+    </item>
+
+</menu>

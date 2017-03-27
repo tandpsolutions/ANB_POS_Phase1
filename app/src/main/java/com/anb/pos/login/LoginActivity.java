@@ -1,5 +1,6 @@
 package com.anb.pos.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.anb.pos.R;
 import com.anb.pos.branch.BranchAdapter;
 import com.anb.pos.branch.BranchManager;
+import com.anb.pos.home.HomeActivity;
 import com.anb.pos.login.presenter.LoginPresenterImpl;
 import com.anb.pos.login.view.ILoginView;
 import com.anb.pos.support.Utils;
@@ -79,7 +81,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void success() {
-        Utils.getInstance().displayMessageDialog(this, "Success");
+        final Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 

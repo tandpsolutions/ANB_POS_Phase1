@@ -14,7 +14,7 @@ import com.anb.pos.login.LoginActivity;
 public class SplashActivity extends AppCompatActivity implements IBranchView {
 
     private Handler handler;
-    private int SPLASH_TIME_OUT = 3000;
+    private int SPLASH_TIME_OUT = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,6 @@ public class SplashActivity extends AppCompatActivity implements IBranchView {
 
     @Override
     public void onError(int response_code) {
-        
+
     }
 }

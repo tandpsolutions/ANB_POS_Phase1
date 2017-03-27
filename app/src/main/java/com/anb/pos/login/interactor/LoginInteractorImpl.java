@@ -12,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by indianic on 20/03/17.
+ * Created by Bhaumik on 20/03/17.
  */
 
 public class LoginInteractorImpl implements ILoginInteractor {

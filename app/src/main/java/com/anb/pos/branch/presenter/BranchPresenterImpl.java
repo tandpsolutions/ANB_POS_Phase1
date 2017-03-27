@@ -6,7 +6,7 @@ import com.anb.pos.branch.model.BranchModelData;
 import com.anb.pos.branch.view.IBranchView;
 
 /**
- * Created by indianic on 20/03/17.
+ * Created by Bhaumik on 20/03/17.
  */
 
 public class BranchPresenterImpl implements IBranchPresenter, IBranchInteractor.OnGetBranchListner {

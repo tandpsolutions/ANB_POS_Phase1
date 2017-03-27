@@ -5,7 +5,7 @@ package com.anb.pos.login.interactor;
  */
 
 public interface ILoginInteractor {
-    void onValidate(String username, String password, int branch, OnFinishListner onFinishListner);
+    void onValidate(String username, String password, String branch, OnFinishListner onFinishListner);
 
     interface OnFinishListner {
         void onSuccess();

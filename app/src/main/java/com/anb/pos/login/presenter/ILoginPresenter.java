@@ -6,5 +6,5 @@ package com.anb.pos.login.presenter;
 
 public interface ILoginPresenter {
 
-    void login(String userName,String password,int branch_code);
+    void login(String userName, String password, String branch_code);
 }

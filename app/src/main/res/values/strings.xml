@@ -8,13 +8,18 @@
     <!--Font String  -->
     <string name="font_roboto_regular">font/roboto_regular.ttf</string>
 
+
+    <!-- common String -->
+    <string name="loading">Loading</string>
+
+
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">Log in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">Enter username</string>
+    <string name="error_invalid_password">Enter password</string>
+    <string name="error_invalid_branch">Invalid Branch</string>
+    <string name="error_username_password_invalid">Username or password invalid.\nPlease try again.</string>
 
 </resources>

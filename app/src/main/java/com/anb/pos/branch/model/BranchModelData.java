@@ -13,15 +13,15 @@ public class BranchModelData extends BaseModel {
     private ArrayList<BranchModel> data;
 
     public class BranchModel {
-        private String branch_code;
+        private String branch_cd;
         private String branch_name;
 
-        public String getBranch_code() {
-            return branch_code;
+        public String getBranch_cd() {
+            return branch_cd;
         }
 
-        public void setBranch_code(String branch_code) {
-            this.branch_code = branch_code;
+        public void setBranch_cd(String branch_cd) {
+            this.branch_cd = branch_cd;
         }
 
         public String getBranch_name() {

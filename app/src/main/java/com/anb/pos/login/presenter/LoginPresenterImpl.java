@@ -18,7 +18,7 @@ public class LoginPresenterImpl implements ILoginPresenter, ILoginInteractor.OnF
     }
 
     @Override
-    public void login(String userName, String password, int branch_code) {
+    public void login(String userName, String password, String branch_code) {
         iLoginView.showLoading();
         loginModel.onValidate(userName, password, branch_code, this);
     }

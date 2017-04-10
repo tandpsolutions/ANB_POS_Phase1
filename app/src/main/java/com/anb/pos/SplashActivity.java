@@ -12,6 +12,7 @@ import com.anb.pos.branch.view.IBranchView;
 import com.anb.pos.home.HomeActivity;
 import com.anb.pos.login.LoginActivity;
 import com.anb.pos.support.Preference;
+import com.anb.pos.support.Utils;
 
 public class SplashActivity extends AppCompatActivity implements IBranchView {
 
@@ -50,6 +51,6 @@ public class SplashActivity extends AppCompatActivity implements IBranchView {
 
     @Override
     public void onError(int response_code) {
-
+        Utils.getInstance().displayMessageDialog(this, getString(R.string.something_went_wrong));
     }
 }

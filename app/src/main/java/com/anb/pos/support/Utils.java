@@ -7,6 +7,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
+
+import com.anb.pos.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Bhaumik on 16/03/17.
@@ -116,5 +122,53 @@ public class Utils {
                 }
             }
         }
+    }
+
+
+    public static void setDateChooserPropertyInit(TextView jcmbDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        jcmbDate.setText(sdf.format(cal.getTime()));
+    }
+
+
+    public static String getDateChooserPropertyInit() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        return sdf.format(cal.getTime());
+    }
+
+    public static String ConvertDateFormetForDBForConcurrency(String strOrgDate) throws Exception {
+        //Changed
+        String strConvDate = "";
+        //try
+        //{
+        strOrgDate = strOrgDate.trim();
+        if (!strOrgDate.startsWith("/")) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date dt = sdf.parse(strOrgDate);
+            SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+            strConvDate = sdf2.format(dt);
+        }
+        //} catch(Exception ex){
+        //printToLogFile("Error in ConvertDateFormetForDB in clSysLib...:",ex);
+        //}
+        return strConvDate;
+    }
+
+    public static String ConvertDateFormetForDB(String strOrgDate) {
+        //Changed
+        String strConvDate = "";
+        try {
+            strOrgDate = strOrgDate.trim();
+            if (!strOrgDate.startsWith("/")) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                java.util.Date dt = sdf.parse(strOrgDate);
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                strConvDate = sdf2.format(dt);
+            }
+        } catch (Exception ex) {
+        }
+        return strConvDate;
     }
 }

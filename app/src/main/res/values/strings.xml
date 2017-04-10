@@ -32,8 +32,14 @@
     <string name="nav_menu_inventory">Inventory</string>
     <string name="nav_menu_in_transit">In Transit Report</string>
 
-    <!-- common strings-->
+    <!-- option menu string-->
+
+    <string name="opt_menu_filter">Filter</string>
+
+    <!-- Filter Strings-->
     <string name="error_invalid_from_date">Enter valid From Date</string>
     <string name="error_invalid_to_date">Enter valid To Date</string>
+    <string name="submit">Submit</string>
+    <string name="search_criteria">Seach Criteria</string>
 
 </resources>

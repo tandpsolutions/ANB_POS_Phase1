@@ -9,7 +9,9 @@ import com.anb.pos.branch.BranchManager;
 import com.anb.pos.branch.model.BranchModelData;
 import com.anb.pos.branch.presenter.BranchPresenterImpl;
 import com.anb.pos.branch.view.IBranchView;
+import com.anb.pos.home.HomeActivity;
 import com.anb.pos.login.LoginActivity;
+import com.anb.pos.support.Preference;
 
 public class SplashActivity extends AppCompatActivity implements IBranchView {
 
@@ -35,7 +37,13 @@ public class SplashActivity extends AppCompatActivity implements IBranchView {
     @Override
     public void onGetBranchSuccess(BranchModelData data) {
         BranchManager.getInstance().setBranches(data.getData());
-        final Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        final String user_id = Preference.getInstance().mSharedPreferences.getString(Preference.USER_ID, "");
+        final Intent intent;
+        if (user_id.equalsIgnoreCase("")) {
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
+        } else {
+            intent = new Intent(SplashActivity.this, HomeActivity.class);
+        }
         startActivity(intent);
         finish();
     }

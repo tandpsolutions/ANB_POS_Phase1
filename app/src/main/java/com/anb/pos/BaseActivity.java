@@ -1,9 +1,6 @@
 package com.anb.pos;
 
 
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
@@ -23,48 +20,16 @@ import com.anb.pos.support.Utils;
  * @purpose:This class is  common class for   all activity.
  ***************************************************************************************/
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
-    protected abstract void initializeComponents();
 
     private long mLastClickTime = 0;
     public final long MAX_CLICK_INTERVAL = 1000;
 
 
-    private double latitude;
-    private double longitude;
-
-    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-
-    private View parentView;
-
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setParentView(View parentView) {
-        this.parentView = parentView;
-    }
-
-
-    public View getParentView() {
-        return parentView;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeComponents();
     }
 
-    public static void startAndFinish(Activity activity, Class cls) {
-        Intent intent = new Intent(activity, cls);
-        activity.startActivity(intent);
-        activity.finish();
-    }
 
     @Override
     public void onClick(View view) {
@@ -73,67 +38,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
          * Logic to Prevent the Launch of the Fragment Twice if User makes
          * the Tap(Click) very Fast.
          */
+        mLastClickTime = SystemClock.elapsedRealtime();
         if (SystemClock.elapsedRealtime() - mLastClickTime < MAX_CLICK_INTERVAL) {
 
             return;
         }
-        mLastClickTime = SystemClock.elapsedRealtime();
-        final int id = view.getId();
 
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-//        if (this instanceof SettingsActivity)
-//            overridePendingTransition(R.anim.hold, R.anim.slide_out_down);
-//        else
-//            overridePendingTransition(R.anim.hold, R.anim.slide_out_right);
-    }
-
-    @Override
-    public void startActivity(Intent intent) {
-        try {
-            super.startActivity(intent);
-        } catch (ActivityNotFoundException ex) {
-
-        }
-//        if (intent.getComponent() == null)
-//            return;
-//        else if (intent.getComponent().getClassName().equals(SettingsActivity.class.getName()))
-//            overridePendingTransition(R.anim.slide_in_down, R.anim.hold);
-//        else if (intent.getComponent().getClassName().equals(UserProfileActivity.class.getName())) {
-//            if (intent.hasExtra(UserProfileActivity.USER_ID))
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.hold);
-//            else
-//                overridePendingTransition(R.anim.slide_in_left, R.anim.hold);
-//        } else
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.hold);
-    }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-//        if (intent.getComponent() == null)
-//            return;
-//        else if (intent.getComponent().getClassName().equals(SettingsActivity.class.getName()))
-//            overridePendingTransition(R.anim.slide_in_down, R.anim.hold);
-//        else if (intent.getComponent().getClassName().equals(UserProfileActivity.class.getName())) {
-//            if (intent.hasExtra(UserProfileActivity.USER_ID))
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.hold);
-//            else
-//                overridePendingTransition(R.anim.slide_in_left, R.anim.hold);
-//        } else
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.hold);
-    }
-
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
     }
 
     /***
@@ -149,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void addFragment(final Fragment newFragment, final Fragment hideFragment) {
         getLocalFragmentManager()
                 .beginTransaction()
-                .add(R.id.main_container, newFragment, newFragment.getClass().getSimpleName())
+                .add(R.id.container_main, newFragment, newFragment.getClass().getSimpleName())
                 .hide(hideFragment)
                 .addToBackStack(hideFragment.getClass().getSimpleName())
                 .commit();
@@ -164,7 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void replaceFragment(final Fragment newFragment) {
         getLocalFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_container, newFragment, newFragment.getClass().getSimpleName())
+                .replace(R.id.container_main, newFragment, newFragment.getClass().getSimpleName())
                 .commit();
     }
 
@@ -177,7 +87,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         getLocalFragmentManager().popBackStack(null, getSupportFragmentManager().POP_BACK_STACK_INCLUSIVE);
         getLocalFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_container, newFragment, newFragment.getClass().getSimpleName())
+                .replace(R.id.container_main, newFragment, newFragment.getClass().getSimpleName())
                 .commit();
     }
 

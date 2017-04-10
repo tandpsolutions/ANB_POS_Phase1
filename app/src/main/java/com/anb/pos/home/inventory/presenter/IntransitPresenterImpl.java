@@ -28,7 +28,7 @@ public class IntransitPresenterImpl implements IntransitPresenter, IntransitInte
     @Override
     public void onSuccess(JsonArray array) {
         intransitView.dismissLoading();
-        intransitView.success();
+        intransitView.success(array);
     }
 
     @Override

@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-//                attemptLogin();
                 Utils.getInstance().hideSoftKeyBoard(LoginActivity.this);
                 loginPresenter.login(mEmailView.getText().toString(), mPasswordView.getText().toString(), BranchManager.getInstance().getBranches().get(mBranchView.getSelectedItemPosition()).getBranch_cd());
             }

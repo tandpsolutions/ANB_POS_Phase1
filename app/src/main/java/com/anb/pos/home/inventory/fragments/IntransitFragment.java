@@ -3,6 +3,8 @@ package com.anb.pos.home.inventory.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,7 +19,9 @@ import android.widget.TextView;
 
 import com.anb.pos.BaseFragment;
 import com.anb.pos.R;
+import com.anb.pos.custom.SpacesItemDecoration;
 import com.anb.pos.home.HomeActivity;
+import com.anb.pos.home.inventory.adapters.IntransitAdapter;
 import com.anb.pos.home.inventory.model.IntransitModel;
 import com.anb.pos.home.inventory.presenter.IntransitPresenterImpl;
 import com.anb.pos.home.inventory.view.IntransitView;
@@ -39,12 +43,20 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
 
 
     private IntransitPresenterImpl intransitPresenter;
+
     private String frmDate = Utils.getDateChooserPropertyInit();
     private String toDate = Utils.getDateChooserPropertyInit();
-    private ArrayList<IntransitModel> intransitModels;
+
     private Dialog searchAlertDialog;
+
+    private ArrayList<IntransitModel.IntransitData> intransitModels;
+
     private Calendar fromCal = Calendar.getInstance();
     private Calendar toCal = Calendar.getInstance();
+
+    private RecyclerView rvList;
+
+    private IntransitAdapter intransitAdapter;
 
 
     @Override
@@ -57,6 +69,11 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
     @Override
     public void initView(View view) {
         setHasOptionsMenu(true);
+        rvList = (RecyclerView) view.findViewById(R.id.frg_intransit_rv_main);
+
+        final LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rvList.setLayoutManager(gridLayoutManager);
+        rvList.addItemDecoration(new SpacesItemDecoration(25));
         intransitModels = new ArrayList<>();
         intransitPresenter = new IntransitPresenterImpl(this);
         try {
@@ -98,9 +115,17 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
 
     @Override
     public void success(JsonArray jsonArray) {
-        TypeToken<List<IntransitModel>> token = new TypeToken<List<IntransitModel>>() {
+        TypeToken<List<IntransitModel.IntransitData>> token = new TypeToken<List<IntransitModel.IntransitData>>() {
         };
-        intransitModels.addAll(new Gson().<Collection<? extends IntransitModel>>fromJson(jsonArray, token.getType()));
+        intransitModels.clear();
+        intransitModels.addAll(new Gson().<Collection<? extends IntransitModel.IntransitData>>fromJson(jsonArray, token.getType()));
+        if (intransitAdapter == null) {
+            intransitAdapter = new IntransitAdapter(intransitModels, getActivity());
+        }
+        if (intransitAdapter != null) {
+            rvList.setAdapter(intransitAdapter);
+            intransitAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -155,7 +180,7 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                ((TextView) v).setText(((dayOfMonth < 10) ? "0" + dayOfMonth : dayOfMonth) + "/" + ((monthOfYear < 10) ? "0" + monthOfYear : monthOfYear) + "/" + year);
+                                ((TextView) v).setText(((dayOfMonth < 10) ? "0" + dayOfMonth : dayOfMonth) + "/" + ((monthOfYear + 1 < 10) ? "0" + (monthOfYear + 1) : monthOfYear + 1) + "/" + year);
                                 frmDate = ((TextView) v).getText().toString();
                                 fromCal.set(Calendar.YEAR, year);
                                 fromCal.set(Calendar.MONTH, monthOfYear);
@@ -173,7 +198,7 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                ((TextView) v).setText(((dayOfMonth < 10) ? "0" + dayOfMonth : dayOfMonth) + "/" + ((monthOfYear < 10) ? "0" + monthOfYear : monthOfYear) + "/" + year);
+                                ((TextView) v).setText(((dayOfMonth < 10) ? "0" + dayOfMonth : dayOfMonth) + "/" + ((monthOfYear + 1 < 10) ? "0" + (monthOfYear + 1) : monthOfYear + 1) + "/" + year);
                                 toDate = ((TextView) v).getText().toString();
                                 toCal.set(Calendar.YEAR, year);
                                 toCal.set(Calendar.MONTH, monthOfYear);

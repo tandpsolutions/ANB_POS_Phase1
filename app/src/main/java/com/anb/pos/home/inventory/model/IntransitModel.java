@@ -20,13 +20,14 @@ public class IntransitModel extends BaseModel {
         this.data = data;
     }
 
-    private class IntransitData {
+    public class IntransitData {
         private String ref_no;
         private String inv_no;
         private String v_date;
-        private String from_loc;
-        private String to_loc;
+        private int from_loc;
+        private int to_loc;
         private String approve_by;
+        private int QTY;
 
         public String getRef_no() {
             return ref_no;
@@ -52,19 +53,19 @@ public class IntransitModel extends BaseModel {
             this.v_date = v_date;
         }
 
-        public String getFrom_loc() {
+        public int getFrom_loc() {
             return from_loc;
         }
 
-        public void setFrom_loc(String from_loc) {
+        public void setFrom_loc(int from_loc) {
             this.from_loc = from_loc;
         }
 
-        public String getTo_loc() {
+        public int getTo_loc() {
             return to_loc;
         }
 
-        public void setTo_loc(String to_loc) {
+        public void setTo_loc(int to_loc) {
             this.to_loc = to_loc;
         }
 
@@ -74,6 +75,14 @@ public class IntransitModel extends BaseModel {
 
         public void setApprove_by(String approve_by) {
             this.approve_by = approve_by;
+        }
+
+        public int getQTY() {
+            return QTY;
+        }
+
+        public void setQTY(int QTY) {
+            this.QTY = QTY;
         }
     }
 }

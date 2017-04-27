@@ -3,6 +3,7 @@ package com.anb.pos.home.inventory.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -58,6 +59,8 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
 
     private IntransitAdapter intransitAdapter;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,10 +73,10 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
     public void initView(View view) {
         setHasOptionsMenu(true);
         rvList = (RecyclerView) view.findViewById(R.id.frg_intransit_rv_main);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frg_intransit_swipe_refresh);
 
         final LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvList.setLayoutManager(gridLayoutManager);
-        rvList.addItemDecoration(new SpacesItemDecoration(25));
         intransitModels = new ArrayList<>();
         intransitPresenter = new IntransitPresenterImpl(this);
         try {
@@ -81,6 +84,13 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                intransitPresenter.getDataFromServer(Utils.ConvertDateFormetForDB(frmDate), Utils.ConvertDateFormetForDB(toDate));
+            }
+        });
     }
 
     @Override
@@ -115,6 +125,7 @@ public class IntransitFragment extends BaseFragment implements IntransitView {
 
     @Override
     public void success(JsonArray jsonArray) {
+        swipeRefreshLayout.setRefreshing(false);
         TypeToken<List<IntransitModel.IntransitData>> token = new TypeToken<List<IntransitModel.IntransitData>>() {
         };
         intransitModels.clear();

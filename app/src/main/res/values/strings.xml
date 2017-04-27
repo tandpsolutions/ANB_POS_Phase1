@@ -6,7 +6,8 @@
 
 
     <!--Font String  -->
-    <string name="font_roboto_regular">font/roboto_regular.ttf</string>
+    <string name="font_roboto_regular">fonts/roboto_regular.ttf</string>
+    <string name="font_roboto_bold">fonts/roboto_bold.ttf</string>
 
 
     <!-- common String -->
@@ -42,5 +43,9 @@
     <string name="submit">Submit</string>
     <string name="search_criteria">Seach Criteria</string>
     <string name="to">To</string>
+    <string name="location">Location : </string>
+    <string name="inv_no">Inv No : </string>
+    <string name="qty">Qty : </string>
+    <string name="approve">approve</string>
 
 </resources>

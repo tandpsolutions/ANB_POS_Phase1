@@ -38,10 +38,10 @@ public class IntransitAdapter extends RecyclerView.Adapter<IntransitAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvInvNo.setText(intransitModels.get(0).getInv_no());
-        holder.tvFromLoc.setText(BranchManager.getInstance().getBranches().get(intransitModels.get(0).getFrom_loc() - 1).getBranch_name());
-        holder.tvToLoc.setText(BranchManager.getInstance().getBranches().get(intransitModels.get(0).getTo_loc() - 1).getBranch_name());
-        holder.tvQty.setText(intransitModels.get(0).getQTY() + "");
+        holder.tvInvNo.setText(intransitModels.get(position).getInv_no());
+        holder.tvFromLoc.setText(BranchManager.getInstance().getBranches().get(intransitModels.get(position).getFrom_loc() - 1).getBranch_name());
+        holder.tvToLoc.setText(BranchManager.getInstance().getBranches().get(intransitModels.get(position).getTo_loc() - 1).getBranch_name());
+        holder.tvQty.setText(intransitModels.get(position).getQTY() + "");
     }
 
     @Override

@@ -1,5 +1,6 @@
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frg_intransit_swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.anb.pos.home.inventory.fragments.IntransitFragment">
@@ -8,6 +9,7 @@
         android:id="@+id/frg_intransit_rv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/_10sdp" />
+        android:paddingTop="@dimen/_10sdp"
+        tools:layout="@layout/row_intransit_list" />
 
 </android.support.v4.widget.SwipeRefreshLayout>

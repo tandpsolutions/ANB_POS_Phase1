@@ -1,64 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:dragEdge="right"
+    app:mode="same_level">
 
+    <!-- Your secondary layout here -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="@dimen/_10sdp">
 
-        <com.anb.pos.custom.CustomTextView
-            android:id="@+id/row_intransit_tv_inv_no"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123"
-            android:textSize="@dimen/_14sdp" />
+            android:contentDescription="@string/approve"
+            android:src="@drawable/ic_check_circle" />
 
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
 
-
-            <com.anb.pos.custom.CustomTextView
-                android:id="@+id/row_intransit_tv_from_loc"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="2"
-                android:minLines="2"
-                android:textSize="@dimen/_14sdp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <com.anb.pos.custom.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
-                android:text="@string/to"
-                android:textSize="@dimen/_14sdp" />
+                <com.anb.pos.custom.CustomTextView
+                    style="@style/column_heading"
+                    android:text="@string/location"
+                    app:font_name="@string/font_roboto_bold" />
 
-            <com.anb.pos.custom.CustomTextView
-                android:id="@+id/row_intransit_tv_to_loc"
-                android:layout_width="0dp"
+                <com.anb.pos.custom.CustomTextView
+                    android:id="@+id/row_intransit_tv_from_loc"
+                    style="@style/column_data_outer"
+                    android:gravity="center"
+                    app:font_name="@string/font_roboto_regular" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:contentDescription="@string/to"
+                    android:src="@drawable/ic_arrow_forward" />
+
+                <com.anb.pos.custom.CustomTextView
+                    android:id="@+id/row_intransit_tv_to_loc"
+                    style="@style/column_data_inner"
+                    android:gravity="center"
+                    app:font_name="@string/font_roboto_regular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="2"
-                android:minLines="2"
-                android:textSize="@dimen/_14sdp" />
+                android:orientation="horizontal">
+
+
+                <com.anb.pos.custom.CustomTextView
+                    style="@style/column_heading"
+                    android:text="@string/inv_no"
+                    app:font_name="@string/font_roboto_bold" />
+
+                <com.anb.pos.custom.CustomTextView
+                    android:id="@+id/row_intransit_tv_inv_no"
+                    style="@style/column_data_outer"
+                    app:font_name="@string/font_roboto_regular" />
+
+                <com.anb.pos.custom.CustomTextView
+                    style="@style/column_heading"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/qty"
+                    app:font_name="@string/font_roboto_bold" />
+
+                <com.anb.pos.custom.CustomTextView
+                    android:id="@+id/row_intransit_tv_qty"
+                    style="@style/column_data_outer"
+                    app:font_name="@string/font_roboto_regular" />
+            </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/colorHrGrey" />
+    </RelativeLayout>
 
-        <com.anb.pos.custom.CustomTextView
-            android:id="@+id/row_intransit_tv_qty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp" />
+</com.chauthai.swipereveallayout.SwipeRevealLayout>
 
-    </LinearLayout>
-</android.support.v7.widget.CardView>
